@@ -2,6 +2,8 @@ name = "Super Happy Friendly Vending Machine"
 
 product = "Neru Neru Neru ne"
 
+products = ["Coffee","Tea","Ginger Ale","Orange Juice"]
+
 inventory = 100
 
 money = 20000
@@ -26,6 +28,7 @@ if customer_money.isdigit():
         print("We have " + str(inventory) + product)
         print("Thank you")
     else:
+        #fix this!!!
         print("Not enough money")
 
 #money = money + customer_money
