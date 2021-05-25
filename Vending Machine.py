@@ -13,7 +13,13 @@ def greet_customer():
 
 greet_customer()
 
-customer_money = input()
+#customer_money = int(input("Please enter some money \n"))
+customer_money = input("Please enter some money \n")
 
-print(customer_money)
-print(type(customer_money))
+if customer_money.isdigit():
+    print("OK")
+
+#money = money + customer_money
+
+#print(customer_money)
+#print(type(customer_money))
