@@ -17,7 +17,16 @@ greet_customer()
 customer_money = input("Please enter some money \n")
 
 if customer_money.isdigit():
-    print("OK")
+    customer_money = int(customer_money)
+    if customer_money >= cost:
+        inventory -= 1
+        change = customer_money - cost
+        money += cost
+        print("Your change is " + str(change))
+        print("We have " + str(inventory) + product)
+        print("Thank you")
+    else:
+        print("Not enough money")
 
 #money = money + customer_money
 
