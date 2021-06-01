@@ -2,7 +2,10 @@ name = "Super Happy Friendly Vending Machine"
 
 product = "Neru Neru Neru ne"
 
-products = ["Coffee","Tea","Ginger Ale","Orange Juice"]
+products = ["Coffee","Tea","Ginger Ale",\
+            "Orange Juice"]
+prices = [130, 140, 150, 160]
+stocks = [100,50,30,70]
 
 inventory = 100
 
