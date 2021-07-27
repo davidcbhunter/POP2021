@@ -37,3 +37,65 @@ studentE = [27, 31, 39, 46, 25, 42, 9, 7, 25, 18, 40, 47, 27, 44, 28, 26,\
             5, 46, 24, 14, 49, 13, 33, 26, 29, 38, 25, 25, 16, 31, 18, \
             43, 30, 31, 38, 31, 17, 26, 39, 29, 20, 36, 32, 10, 20, 12, \
             18, 44, 29, 35, 29, 35, 52, 39, 26]
+
+#find total for studentA
+totalA = 0
+lowestA = studentA[0]
+highestA = studentA[0]
+for score in studentA:
+    totalA += score
+    if score < lowestA:
+        lowestA = score
+    if score > highestA:
+        highestA = score
+print(totalA)
+print(highestA)
+
+#find total for studentB
+totalB = 0
+for score in studentB:
+    totalB += score
+print(totalB)
+
+#find total for studentC
+totalC = 0
+for score in studentC:
+    totalC += score
+print(totalC)
+
+#find total for studentD
+totalD = 0
+for score in studentD:
+    totalD += score
+print(totalD)
+
+#find total for studentE
+totalE = 0
+for score in studentE:
+    totalE += score
+print(totalE)
+
+#average for studentA
+print(totalA/len(studentA))
+
+print(totalB/len(studentB))
+
+print(totalC/len(studentC))
+
+print(totalD/len(studentD))
+
+print(totalE/len(studentE))
+
+#find the totals, highest, and lowest in two loops
+student_list = [studentA,studentB,studentC,studentD,studentE]
+totals_list = []
+averages_list = []
+highscore_list = []
+lowscore_list = []
+
+for student in student_list:
+    total = 0
+    for score in student:
+        total += score
+    totals_list.append(total)
+print(totals_list)
