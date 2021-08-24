@@ -22,19 +22,37 @@ class ToDoList:
     def __init__(self):
         self.tdl = []
     def Add(self,td):
-        self.tdl.append(td)
+        if len(self.tdl) > 0:
+            found = False
+            for item in self.tdl:
+                if item.finished:
+                    self.tdl.insert(self.tdl.index(item),td)
+                    found = True
+                    break
+            if not found:
+                self.tdl.append(td)
+        else:
+            self.tdl.append(td)
     def Remove(self,index):
         self.tdl.removeat(index)
     def MarkFinished(self,index):
         self.tdl[index].finished = True
+        self.tdl[index].todo = strike(str(self.tdl[index]))
+        self.tdl.append(self.tdl.pop(index))
     def ShowItems(self):
         for item in self.tdl:
             print( str(self.tdl.index(item) + 1) + " " + str(item))
+        print(\n)
     def Save(self):
         file = open("todolist", "wb")
         pickle.dump(self,file)
         file.close()
 
+def strike(text):
+    result = ''
+    for c in text:
+        result = result + c + '\u0336'
+    return result
 
 todo1 = ToDoItem("Do HW",datetime.date.today())
 print(todo1.todo)
@@ -49,7 +67,7 @@ def ShowChoices():
     print("2 Remove Item")
     print("3 Finish Item")
     print("Q Quit")
-    print("Enter a number (1,2,3) or Q to quit")
+    print("Enter a number (1,2,3) or Q to quit \n")
 
 #file = open("todolist", "wb")
 #file.close()
@@ -64,8 +82,8 @@ if os.path.exists("todolist"):
 
 
 
-print(tdl1.tdl)
-
+#print(tdl1.tdl)
+tdl1.ShowItems()
 ShowChoices()
 userchoice = input("What would you like to do? \n")
 while userchoice.lower() != "q":
@@ -93,6 +111,7 @@ while userchoice.lower() != "q":
             print("Sorry. I don't understand. \n")
     else:
         print("Sorry. I don't understand. \n")
+    tdl1.ShowItems()
     ShowChoices()
     userchoice = input("What would you like to do? \n")
 
