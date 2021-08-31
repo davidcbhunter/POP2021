@@ -17,7 +17,7 @@ class ToDoList:
     def Add(self,td):
         self.tdl.append(td)
     def Remove(self,index):
-        self.tdl.removeat(index)
+        self.tdl.pop(index)
 
 tdl1 = ToDoList()
 tdl1.tdl.append(todo1)
