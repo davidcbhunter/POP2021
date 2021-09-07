@@ -31,7 +31,7 @@ def ShowCommand():
     print("Q for quit")
     print("A for add")
     print("R for remove")
-    print("f for finish")
+    print("F for finish")
     print("\n")
     
 ShowCommand()
@@ -51,7 +51,20 @@ while command != "Q":
         to_remove = int(input("Enter the number for the item"))
         if to_remove <= 0:
             print("Your number is too small.")
-        if to_remove > len(tdl1.tdl):
+        elif to_remove > len(tdl1.tdl):
             print("Your number is too big.")
-        tdl1.Remove(to_remove-1)
+        else:
+            tdl1.Remove(to_remove-1)
+    if command == "F":
+        tdl1.ShowList()
+        to_finish = int(input("Enter the number for the item"))
+        if to_finish <= 0:
+            print("Your number is too small.")
+        elif to_finish > len(tdl1.tdl):
+            print("Your number is too big")
+        else:
+            if not tdl1.tdl[to_finish-1].finished:
+                tdl1.tdl[to_finish-1].finished = True
+        
     command = input("Please enter your command \n")
+
