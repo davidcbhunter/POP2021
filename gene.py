@@ -4,7 +4,7 @@ chemicals = ["A", "T","C","G"]
 
 start = "ATG"
 
-end = ["TAG","TAA","TAG"]
+end = ["TAG","TAA","TGA"]
 
 
 
@@ -28,4 +28,3 @@ for x in range(random.randint(10,100)):
     gene.append(codon)
 
 print(gene)
-
