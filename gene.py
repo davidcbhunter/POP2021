@@ -15,20 +15,6 @@ def make_codon():
     return codon
     
 
-#print(codon)
-
-#gene = [start]
-#for x in range(random.randint(10,100)):
-#    codon = make_codon()
-#    while codon == start or codon in end:
-#        codon = make_codon()
-        #print("NG!!!")
-#    if codon in end:
-#        print("end")
-#    gene.append(codon)
-
-#print(gene)
-
 class Gene:
     def __init__(self,na,nu):
         self.name = na
@@ -37,9 +23,6 @@ class Gene:
             codon = make_codon()
             while codon == start or codon in end:
                 codon = make_codon()
-        #print("NG!!!")
-#    if codon in end:
-#        print("end")
             self.codon_list.append(codon)
         self.codon_list.append(end[random.randint(0,len(end)-1)])
     def Has_Codon(self,co):
@@ -69,19 +52,65 @@ class Gene:
                     return True
                 else:
                     pass
+#    def CountPattern(self,pattern):
+#        if not pattern[0] in self.codon_list:
+#            return 0
+#        else:
+#            count = 0
+#            for codon in self.codon_list:
+#                if codon == pattern[0] and self.codon_list.index(codon) + len(pattern) > len(self.codon_list):
+#                    break
+#                elif codon == pattern[0]:
+#                    index = self.codon_list.index(codon)
+#                    test = []
+#                    for x in range(len(pattern)):
+#                        if self.codon_list[index + x] == pattern[x] and :
+#                            break
+#                else:
+#                    pass
+#            return count
 
 gene = Gene("ABC",100)
 
-gene.codon_list[5] = "TTT"
-gene.codon_list[6] = "AAA"
 
-print(gene.codon_list)
-#print(gene.Has_Codon("ATG"))
-#print(gene.Has_Codon("CCC"))
+class DNA:
+    def __init__(self, na, nu):
+        self.name = na
+        self.gene_list = []
+        for x in range(nu):
+            gene = Gene("A" + str(x), random.randint(100, 600))
+            self.gene_list.append(gene)
+
+flu = DNA("Influenza", 8)
+
+fluATT = 0
+for g in flu.gene_list:
+    #print(g.codon_list)
+    fluATT += g.Count_Codon("ATT")
 
 
-#print(gene.Count_Codon("GGG"))
-#print(gene.Count_Codon("GAA"))
-print(gene.Has_Codon("TTT"))
-print(gene.Has_Codon("AAA"))
-print(gene.Has_Pattern(["TTT","AAA"]))
+covid = DNA("Covid-19", 9)
+
+covidATT = 0
+for g in covid.gene_list:
+    #print(g.codon_list)
+    covidATT += g.Count_Codon("ATT")
+
+mers = DNA("MERS", 11)
+
+mersATT = 0
+for g in mers.gene_list:
+    #print(g.codon_list)
+    mersATT += g.Count_Codon("ATT")
+
+print("flu " + str(fluATT))
+print("covid " + str(covidATT))
+print("mers " + str(mersATT))
+
+
+
+
+        
+
+
+
