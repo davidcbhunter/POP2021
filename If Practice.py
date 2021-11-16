@@ -1,6 +1,6 @@
 import random
 
-choices = ["Rock","Paper","Scissors"]
+choices = ["R","P","S"]
 
 
 playerChoice = ""
@@ -15,3 +15,6 @@ for x in range(1,4):
     print("\n")
     playerChoice = input("Enter [R], [P], or [S] \n")
     #use if to see who won the match
+    if (playerChoice == "R" and computerChoice == "S") or (playerChoice == "S" and computerChoice == "P") or (playerChoice == "P" and computerChoice == "R"):
+        playerScore += 1
+    
