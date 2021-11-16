@@ -9,11 +9,11 @@ class Character:
         print(self.greeting + ", I'm " + self.name)
 
 
-gList = ["Hey","Hello","Hi!","Yo!","What's up?","Que pasa", "How do you do?"]
+gList = ["Hey","Hello","Hi!","Yo!","What's up?","Que pasa", "How do you do?"]　#あいさつリスト
 
-nList = ["Tomoko","James","Claire","Susan","Bill","Yuri","Mary"]
+nList = ["Tomoko","James","Claire","Susan","Bill","Yuri","Mary"] #名前リスト
 
-cList = []
+cList = [] #your character list
 
 #add 7 characters to cList - we need a name and a greeting
 #to add something to a list, use list.append(x)
