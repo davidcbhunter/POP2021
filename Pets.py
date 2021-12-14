@@ -1,3 +1,6 @@
+import random
+import math
+
 class Cat:
     def __init__(self,n,g,c,b,a):
         self.name = n
@@ -9,6 +12,7 @@ class Cat:
         self.ypos = 0
         self.energy = 100
     def Jump(self,height):
+        global treat
         #check energy!!
         if self.energy > 5:
             self.Talk()
@@ -18,6 +22,16 @@ class Cat:
             self.Age()
             #print the ypos
             print(self.ypos)
+            #check where the treat is
+            #if self.xpos and treat.xpos are same
+            # and self.ypos and treat.ypos are same
+            if self.xpos == treat.xpos and self.ypos == treat.ypos:
+                print("chuuru chuuru chuuru!")
+                self.Feed()
+                treat = Treat("chuuru")
+            #we didn't get the treat
+            else:
+                print(self.DistanceToTreat(treat))
             #change the ypos back
             self.ypos = self.ypos - height
             #print the ypos again
@@ -28,6 +42,8 @@ class Cat:
     def Move(self, distance):
         #check energy!!
         self.xpos = self.xpos + distance
+        global treat
+        print(self.DistanceToTreat(treat))
         #make older!
         self.Age()
         print(self.xpos)
@@ -35,7 +51,7 @@ class Cat:
         self.age = self.age + 0.1
         #lose energy!!
         self.energy = self.energy - 5
-    def Talk():
+    def Talk(self):
         print("Meow")
     #Get Cat age
     def GetCatAge(self):
@@ -44,6 +60,17 @@ class Cat:
     #Feed
     def Feed(self):
         self.energy = self.energy + 50
+    def DistanceToTreat(self, t):
+        #find x and y
+        dx = self.xpos - t.xpos
+        dy = self.ypos - t.ypos
+        #square
+        dx = dx * dx
+        dy = dy * dy
+
+        #find the distance
+        distance = math.sqrt(dx + dy)
+        return distance
 
 
 
@@ -54,6 +81,20 @@ cat = Cat("Tama", "F", "White","Mike", 0)
 #print(age)
 #print(cat.Move(10))
 
+#make a treat
+# give it a random position
+class Treat:
+    def __init__(self,n):
+        self.name = n
+        self.xpos = random.randint(1,10)
+        self.ypos = 10
+
+#make a treat!!!
+treat = Treat("chuuru")
+print(treat.xpos)
+#print(treat.ypos)
+
+
 #use while loop to check commands
 command = input("\n")
 while command != "q":
@@ -63,11 +104,14 @@ while command != "q":
 #if command is j, then jump
     if command == "j":
         cat.Jump(10)
+        #check if the cat got the treat
 
 #if command is m, then move
     if command == "m":
         d = int(input("How far?\n"))
         cat.Move(d)
+        #show the distance to treat
+        
 #feed the cat
     if command == "f":
         cat.Feed()
@@ -75,50 +119,6 @@ while command != "q":
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-#self.ypos = ypos + height
-#print(self.ypos)
-#self.ypos = ypos - height
-#print(self.ypos)
-
-class CatTwo:
-    def __init__(self):
-        self.name = ""
-        self.gender = ""
-        self.color = ""
-        self.breed = ""
-        self.age = 0
-
-class CatThree:
-    def __init__(self,n = "",g = "" ,c = "",b = "",a = 0):
-        self.name = n
-        self.gender = g
-        self.color = c
-        self.breed = b
-        self.age = a
-
-
-
-cat2 = CatTwo()
-cat2.name = "Tama"
-cat2.gender = "F"
-cat2.color = "White"
-cat2.breed = "Mike"
-
-cat3 = CatThree("Tama")
-#print(cat3.name)
 
 
 
