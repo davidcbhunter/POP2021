@@ -72,18 +72,22 @@ class Wolf:
         self.energy = en
         Map[pos.y][pos.x] = "W"
     def Move(self, pos):
-        if self.position.y + pos.y >= len(Map) or //
+        if self.position.y + pos.y >= len(Map) or \
         self.position.y + pos.y < 0:
             return
-        if self.position.x + position.x >= //
-        len(Map[self.position.y + pos.y]) or
-        self.position.x + position.x < 0:
+        if self.position.x + pos.x >= \
+        len(Map[self.position.y + pos.y]) or \
+        self.position.x + pos.x < 0:
             return
+        Map[self.position.y][self.position.x] = "*"
+        self.position.x += pos.x
+        self.position.y += pos.y
+        Map[self.position.y][self.position.x] = "W"
         
 
 
 wolf = Wolf(Position(1,8),"M",100,3)
-#print_map(Map)
+print_map(Map)
 
 
 command = ""
@@ -92,12 +96,17 @@ while command != "q":
 # we can use W, A, S, D to move the wolf on the map
     if command == "w":
         #move up
+        wolf.Move(Position(0,1))
     if command == "a":
         #move left
+        wolf.Move(Position(-1,0))
     if command == "s":
         #move down
+        wolf.Move(Position(0,-1))
     if command == "d":
         #move right
+        wolf.Move(Position(1,0))
+    print_map(Map)
     command = input("\n")
 
 
@@ -106,6 +115,3 @@ while command != "q":
 
 
 #Map[wolf.position.x][wolf.position.y] = "W"
-
-
-
