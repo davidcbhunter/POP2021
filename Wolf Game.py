@@ -119,6 +119,12 @@ class Deer:
         self.age += 0.1
         # subtract 3 from energy
         self.energy -= 3
+    def Notice(self):
+        if self.position.Distance(wolf.position) <= 4:
+            #print("Danger Danger Danger")
+            return True
+        else:
+            return False
 
 
 wolf = Wolf(Position(1,8),"M",100,3)
@@ -150,6 +156,32 @@ while command != "q":
     if command == "d":
         # move right
         wolf.Move(Position(1,0))
+    #check the wolf position
+    if deer.Notice():
+        # run, ignore, etc
+        notice_chance = random.randint(0,9)
+        if notice_chance >= 4:
+        # get opposite direction
+            wolf_to_deer = Position(\
+                deer.position.x - wolf.position.x,\
+                deer.position.y - wolf.position.y)
+            
+        # normalize
+            wolf_deer_distance = deer.position.Distance(wolf.position)
+            wolf_to_deer.x = wolf_to_deer.x/wolf_deer_distance
+            wolf_to_deer.y = wolf_to_deer.y/wolf_deer_distance
+            print(wolf_to_deer.x)
+            print(wolf_to_deer.y)
+        # run
+            deer.Move(Position(math.floor(wolf_to_deer.x * 3),\
+                               math.floor(wolf_to_deer.y * 3)))
+            
+    else:
+        #chance for deer to move
+        deer_move_chance = random.randint(0,9)
+        if deer_move_chance == 0:
+            #move the deer
+            deer.Move(Position(random.randint(-1,1),random.randint(-1,1)))
 
     # show the map again
     print_map(Map)
