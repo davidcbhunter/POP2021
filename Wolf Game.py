@@ -87,18 +87,42 @@ class Wolf:
         # check distance between wolf and deer
         # if less than 2, print message "close!"
         if self.position.Distance(deer.position) < 2:
-            print("close!")
+            #print("close!")
+            self.Eat()
+    def Eat(self):
+        print("Eating deer!!!")
+        global deer
+        print(id(deer))
+        # add 20 energy to the wolf's energy
+        self.energy = self.energy + 20
+        # update the map with the old position
+        Map[self.position.y][self.position.x] = "*"
+        # make the wolf's position the same as the deer
+        self.position = deer.position
+        # update the map with the new position
+        Map[self.position.y][self.position.x] = "W"
+        # make a new deer
+        deer = Deer(Position(random.randint(0,9), \
+                     random.randint(0,9)),"F", \
+            100, 3)
+        print(id(deer))
+
+        
         
 # Let's make a deer class
 # it should be similar to the Wolf class
 class Deer:
     def __init__(self,pos,gen, en = 100, ag = 3):
         self.name = "Bambi"
+        while pos.x == wolf.position.x \
+              and pos.y == wolf.position.y:
+            pos = Position(random.randint(0,9),\
+                           random.randint(0,9))
         self.position = pos
+        Map[pos.y][pos.x] = "D"
         self.age = ag
         self.gender = gen
         self.energy = en
-        Map[pos.y][pos.x] = "D"
     def Move(self, pos):
         if self.position.y + pos.y >= len(Map) or \
         self.position.y + pos.y < 0:
